@@ -1,0 +1,16 @@
+{
+  "C Boilerplate": {
+    "prefix": "start",
+    "body": [
+      "#include <stdio.h>",
+      // "#include <stdlib.h>",
+      "",
+      "int main()",
+      "{",
+      "    $0",
+      "    return 0;",
+      "}"
+    ],
+    "description": "Insert standard C includes and main function template"
+  }
+}

@@ -1,0 +1,2 @@
+// Given an integer array, find the contiguous subarray (containing at least one number) which has the largest product and return its product. Do not use an additional array or nested loops. Hint: As you iterate through elements, negative numbers can flip a small number into a large positive number—what two running values must you track at each step? Function: int maxProductSubarray(int *a, int n);
+
