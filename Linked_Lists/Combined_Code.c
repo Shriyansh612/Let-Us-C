@@ -12,7 +12,7 @@ struct Node {
 struct Node* createList();
 void traverse(struct Node *head);
 struct Node* insertNode(struct Node *head, int data, int pos);
-struct Node* deleteNode(struct Node *head, int key);
+struct Node* deleteNode(struct Node *head, int pos);
 int searchNode(struct Node *head, int key);
 struct Node* reverseList(struct Node *head);
 struct Node* mergeList(struct Node *head1, struct Node *head2);
@@ -113,39 +113,47 @@ struct Node* insertNode(struct Node *head, int data, int pos) {
 }
 
 
-// 4. DELETION BY VALUE
-struct Node* deleteNode(struct Node *head, int key) {
+// 4. DELETION AT ANY POSITION
+
+struct Node* deleteNode(struct Node *head, int pos) {
     struct Node *temp = head, *prev = NULL;
+    int i;
 
     if (head == NULL) {
         printf("List is empty!\n");
         return head;
     }
 
-    // If first node contains the key
-    if (head->data == key) {
-        temp = head;
+    if (pos <= 0) {
+        printf("Invalid position!\n");
+        return head;
+    }
+
+    // Deletion at beginning
+    if (pos == 1) {
         head = head->next;
         free(temp);
         return head;
     }
 
-    // Search for the node
-    while (temp != NULL && temp->data != key) {
+    // Reach the node to be deleted
+    for (i = 1; temp != NULL && i < pos; i++) {
         prev = temp;
         temp = temp->next;
     }
 
     if (temp == NULL) {
-        printf("Element not found!\n");
+        printf("Position does not exist!\n");
         return head;
     }
 
+    // Delete the node
     prev->next = temp->next;
     free(temp);
 
     return head;
 }
+
 
 
 // 5. SEARCHING
@@ -253,9 +261,10 @@ int main() {
                 break;
 
             case 4:
-                printf("Enter element to delete: ");
-                scanf("%d", &data);
-                head1 = deleteNode(head1, data);
+                printf("Enter position to delete: ");
+                scanf("%d", &pos);
+
+                head1 = deleteNode(head1, pos);
                 break;
 
             case 5:
